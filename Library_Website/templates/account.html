@@ -3,5 +3,18 @@
 	<div class="col-md-10">
 		<a href="{{url_for('addbook')}}" class="btn btn-success btn-lg">Add Book</a>
 	</div>
-	<h1>{{session['books']}}</h1>
+	<table class="table table-dark books">
+		<tr>
+			<th scope="col">Book Name</th>
+			<th scope="col">Issue Date</th>
+			<th scope="col">Due Date</th>
+		</tr>
+		{%for book in books%}
+			<tr scope="row">
+				<td>{{book.bookname}}</td>
+				<td>{{(book.issuedate|string)[0:10]}}</td>
+				<td>{{(book.duedate|string)[0:10]}}</td>
+			</tr>
+		{%endfor%}
+	</table>
 {%endblock content%}

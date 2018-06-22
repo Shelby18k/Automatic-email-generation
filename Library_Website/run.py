@@ -61,7 +61,9 @@ def home():
 def account():
 	if not(current_user.is_authenticated):
 		return redirect(url_for('home'))
-	return render_template('account.html',title="Account")
+	a = User.query.get(int(session['user']))
+	book = a.books
+	return render_template('account.html',title="Account",books=book)
 
 @app.route("/addbook",methods=['GET','POST'])
 def addbook():
